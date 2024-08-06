@@ -1,0 +1,62 @@
+
+[default]
+ key = 'HYB10-C3K-MASTARHC2'
+
+[default.rdxqa]
+ key = 'REAL'
+ waverange = [5000,7000]
+ response_func_file = 'none'
+ covariance = false
+
+[default.binning]
+ key                    = 'SPX'
+ spatial_method         = 'voronoi'
+
+[default.binning.spatial]
+ target_snr             = 10
+
+[default.binning.spectral]
+ covar_mode         = 'channels'
+ covar_par          = 11
+
+[default.continuum]
+ key                    = 'c3k'
+ minimum_snr            = 10.0 # was 1.0, if it breaks turn it back down
+ fit_method             = 'ppxf'
+
+[default.continuum.fit]
+ artifact_mask          = 'BADSKY'
+ emission_line_mask     = 'ELPSCMSK'
+ velscale_ratio         = 4
+
+[default.continuum.fit.templates]
+ key              = 'c3k'
+ file_search = '/home/akami/anaconda3/envs/dap/lib/python3.9/site-packages/mangadap/data/spectral_templates/c3k/*.fits'    # Search string
+ sres_ext = 'SRES'
+ in_vacuum = true                          # Wavelength in vacuum?
+ log10 = true                              # Log binned?
+
+[default.eline_moments]
+ key                = 'EMOM'
+ artifact_mask      = 'BADSKY'
+
+[default.eline_fits]
+ key                  = 'EFITHC2'
+ fit_method           = 'sasuke'
+
+[default.eline_fits.fit]
+ emission_lines       = 'ELPMPL11'
+ etpl_line_sigma_mode = 'offset'
+ etpl_line_sigma_min  = 10
+ artifact_mask        = 'BADSKY'
+ deconstruct_bins     = 'binid'
+ reject_boxcar        = 101
+ velscale_ratio       = 1
+ mdegree              = 14
+
+[default.eline_fits.fit.templates]
+ key              = 'MASTARHC2'
+
+[default.indices]
+ key                      = 'INDXEN'
+ artifact_mask            = 'BADSKY'
